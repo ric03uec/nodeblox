@@ -1,15 +1,15 @@
-
+'use strict'
 /**
  * Module dependencies.
  */
+var express = require('express');
+var util    = require('util');
 
-var express = require('express')
-  , routes = require('./routes')
+var app  = express.createServer();
 
-var app = module.exports = express.createServer();
-
-// Configuration
-
+/**
+  * Application Configuration
+  */
 app.configure(function(){
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
@@ -19,6 +19,9 @@ app.configure(function(){
   app.use(express.static(__dirname + '/public'));
 });
 
+/**
+  * Application environment(s) Configuration
+  */
 app.configure('development', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
 });
@@ -28,8 +31,9 @@ app.configure('production', function(){
 });
 
 // Routes
+require('./routes')(app);
 
-app.get('/', routes.index);
+app.listen(2727);
+util.log("Express server listening on port " + app.address().port + " in mode " + app.settings.env);
 
-app.listen(3000);
-console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
+module.exports = app; 

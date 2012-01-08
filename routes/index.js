@@ -1,7 +1,13 @@
+'use strict'
+
 /*
  * GET home page.
  */
-
-exports.index = function(req, res){
-  res.render('index', { title: 'Express' })
+module.exports = function(app){
+  /**
+    * Map the URL '/' to the callback
+    */
+  app.get('/', function(req, res){
+    res.render('index', { title: 'Express' })
+  });
 };

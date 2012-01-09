@@ -1,5 +1,6 @@
 'use strict'
 
+var util = require('util')
 /*
  * GET home page.
  */
@@ -8,6 +9,8 @@ module.exports = function(app){
     * Map the URL '/' to the callback
     */
   app.get('/', function(req, res){
-    res.render('index', { title: 'Express' })
+    util.log('Serving request for url ' + req.route.path)
+    
+    res.render('index', { title: 'nodeBlox' })
   });
 };

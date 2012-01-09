@@ -1,2 +1,22 @@
-h1= title
-p Welcome to #{title}
+div.topbar
+  div.fill
+    div.container
+      a.brand(href='#') #{title}
+      ul.nav
+        li.active
+          a(href='#') Home
+        li
+          a(href='#about') About
+        li
+          a(href='#contact') Contact
+      form.pull-right(method="post", action="/submit/form", id="loginForm")
+        input.input-small(type="text", name="User", placeholder="username")
+        input.input-small(type="password", name="Password", placeholder="password")
+        input.btn.primary(type="submit", value="Sign In")
+
+  div.container
+    div.content
+      div.page-header
+        h1 Main Page
+        div.row
+           h3 Welcome to #{title}

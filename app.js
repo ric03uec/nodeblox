@@ -4,8 +4,32 @@
  */
 var express = require('express');
 var util    = require('util');
-
+var Mongoose = require('mongoose').Mongoose;
 var app  = express.createServer();
+
+
+Mongoose.model('User', {
+  properties : ['login', 'password', 'role'],
+
+  indexes : ['login', 'password'],
+
+  static : {
+    authenticate : function(login, password){
+      return this.find({login : login, password : password});
+    }
+  }
+});
+
+var db = Mongoose.connect('mongodb://localhost/db');
+var User = db.model('User');
+
+User.authenticate('deva', 'deva').first(function(user){
+  if(user){
+    util.log('Login successful');
+  }else{
+    util.log('tough luck beeaaatchhh');
+  }
+});
 
 /**
   * Application Configuration

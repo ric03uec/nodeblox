@@ -5,7 +5,6 @@ var bcrypt  = require('bcrypt');
 var mongoose = require('mongoose');
 var Schema   = mongoose.Schema;
 
-
 var validatePresenceOf = function(value){
   return value && value.length; 
 };
@@ -15,26 +14,26 @@ var toLower = function(string){
 };
 
 var User = new Schema({
-  'email' : { type : String, 
-              validate : [validatePresenceOf, 'an email is required'],
+  'username' : { type : String, 
+              validate : [validatePresenceOf, 'a Username is required'],
               set : toLower,
               index : { unique : true }
               },
   'password' : String,
 });
 
-User.statics.findUser = function(email, password, cb){
-  return  this.find({'email' : email}, cb);
+User.statics.findUser = function(username, password, cb){
+  return  this.find({'username' : username}, cb);
 };
 
-User.statics.validateUser = function(email, password, cb){
-  this.find({'email' : email}, function(err, response){
+User.statics.validateUser = function(username, password, cb){
+  this.find({'username' : username}, function(err, response){
     var user = response[0];
     if(!user){
       cb(new Error('AuthFailed : Username does not exist'));
     }else{
       if(password == user.password){
-        util.log('Authenticated User ' + email);
+        util.log('Authenticated User ' + username);
         cb(null, user);
       }else{
         cb(new Error('AuthFailed : Invalid Password'));

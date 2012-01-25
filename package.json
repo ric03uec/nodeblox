@@ -6,5 +6,6 @@
       "express": "latest"
     , "jade": "latest"
     , "mongoose": "latest"
+    , "bcrypt":"latest
   }
 }

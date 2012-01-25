@@ -13,7 +13,6 @@ module.exports = function(app){
     util.log('Serving request for url [GET]' + req.route.path)
     
     res.render('index', { title: 'nodeBlox' })
-    util.log(util.inspect(req.session));
   });
 
   /**

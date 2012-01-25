@@ -5,9 +5,14 @@
   */
 var Login = function(){
   
-  $('#loginForm').submit(function(){
-    $.post('/login', function(response){
-     //----receive the post result----// 
+  $('#loginForm').submit(function(event){
+    /**
+      * Prevent the form from taking default action.
+      */
+    event.preventDefault();
+    $.post('/login', $(this).serialize(), function(response){
+      $('#loginForm').hide();
+      $('#loginPrompt').html('Authenticated');
     });
   });
 };

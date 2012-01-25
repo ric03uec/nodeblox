@@ -10,9 +10,10 @@ div.topbar
         li
           a(href='#contact') Contact
       form.pull-right(method="post", id="loginForm")
-        input.input-small(type="text", name="User", placeholder="username")
-        input.input-small(type="password", name="Password", placeholder="password")
+        input.input-small(id="username", type="text", name="User", placeholder="Username")
+        input.input-small(id="password", type="password", name="Password", placeholder="Password")
         input.btn.primary(type="submit", value="Sign In")
+      p#loginPrompt.pull-right.login-prompt
 
 div.container
   div.content

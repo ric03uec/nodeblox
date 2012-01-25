@@ -1,35 +1,14 @@
 'use strict'
+
 /**
  * Module dependencies.
  */
 var express = require('express');
 var util    = require('util');
-var Mongoose = require('mongoose').Mongoose;
+var mongoose = require('mongoose');
 var app  = express.createServer();
 
-
-Mongoose.model('User', {
-  properties : ['login', 'password', 'role'],
-
-  indexes : ['login', 'password'],
-
-  static : {
-    authenticate : function(login, password){
-      return this.find({login : login, password : password});
-    }
-  }
-});
-
-var db = Mongoose.connect('mongodb://localhost/db');
-var User = db.model('User');
-
-User.authenticate('deva', 'deva').first(function(user){
-  if(user){
-    util.log('Login successful');
-  }else{
-    util.log('tough luck beeaaatchhh');
-  }
-});
+mongoose.connect('mongodb://localhost/testdb');
 
 /**
   * Application Configuration

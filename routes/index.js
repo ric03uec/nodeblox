@@ -34,4 +34,16 @@ module.exports = function(app){
       }
     });
   });
+
+  /**
+    * Add a new User to database
+    */
+  app.post('/signup', function(req, res){
+    util.log('Serving request for url [POST] ' + req.route.path);
+    
+    var username = req.body.User;
+    var password = req.body.Password;
+
+    util.log('Username' + username + '   Pass ' + password);
+  });
 };

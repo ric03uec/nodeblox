@@ -10,10 +10,28 @@ var Login = function(){
       * Prevent the form from taking default action.
       */
     event.preventDefault();
-    $.post('/login', $(this).serialize(), function(response){
-      $('#loginForm').hide();
-      $('#loginPrompt').html('Authenticated');
-    });
+    var username = $('#username').val();
+    var password = $('#password').val();
+
+    /**
+      * Do this check because the form submits even on Sign Up
+      * button click
+      */
+    if(username && password){
+      $.post('/login', $(this).serialize(), function(response){
+        $('#loginForm').hide();
+        $('#loginPrompt').html('Authenticated');
+      });
+    }
+  });
+  
+  $('#my-modal').modal({
+    backdrop:'static',
+    keyboard:'true'
+  });
+ 
+  $('#modal-btn').click(function(){
+   $('#my-modal').modal('show'); 
   });
 };
 

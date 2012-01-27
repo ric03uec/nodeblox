@@ -9,10 +9,13 @@ div.topbar
           a(href='#about') About
         li
           a(href='#contact') Contact
-      form.pull-right(method="post", id="loginForm")
-        input.input-small(id="username", type="text", name="User", placeholder="Username")
-        input.input-small(id="password", type="password", name="Password", placeholder="Password")
-        input.btn.primary(type="submit", value="Sign In")
+      div#logindiv
+        form.pull-right(method="post", id="loginForm")
+          input.input-small(id="username", type="text", name="User", placeholder="Username")
+          input.input-small(id="password", type="password", name="Password", placeholder="Password")
+          input.btn.primary(type="submit", value="Sign In")
+          
+          button#modal-btn.btn.pull-right Sign Up
       p#loginPrompt.pull-right.login-prompt
 
 div.container
@@ -23,6 +26,15 @@ div.container
     div.row
       div.span10
         h2 Page Content
+        div#my-modal.modal.hide
+          div.modal-header
+            a.close(href='#') x
+            h3 Sign Up
+          div.modal-body
+            p signup forms go here
+          div.modal-footer
+            a.btn.primary(href='#') Primary
+            a.btn.secondary(href='#') Secondary
       div.span4
         h3 Secondary Content
         

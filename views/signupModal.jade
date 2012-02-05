@@ -1,0 +1,29 @@
+div#signup-modal.modal.hide
+  div.modal-header
+    a.close(href='#', data-dismiss="modal") x
+    h3 Sign Up Form
+  div.modal-body
+    div.row-fluid
+      div.span9
+        form.form-horizontal(method="post", id="signup-form")
+          div.control-group
+            label.control-label(for="username") User Name :
+            div.controls
+              input.input-small(type="text", id="username")
+          div.control-group
+            label.control-label(for="useremail") Email :
+            div.controls
+              input.input-small(type="text", id="useremail")
+          div.control-group
+            label.control-label(for="passwordFirst") Password :
+            div.controls
+              input.input-small(type="password", id="passwordFirst")
+          div.control-group
+            label.control-label(for="password") Password(Once More) :
+            div.controls
+              input.input-small(type="password", id="password")
+
+  div.modal-footer
+    a.btn.btn-danger(href='#', data-dismiss="modal") Cancel
+    a.btn.btn-primary(href='#', data-dismiss="modal") Sign Up
+

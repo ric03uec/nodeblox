@@ -1,74 +1,32 @@
-div.navbar.navbar-fixed-top
-  div.navbar-inner
-    div.container
-      a.brand(href='#') #{title}
-      div.nav-collapse
-        ul.nav
-          li.active
-            a(href='#') Home
-          li
-            a(href='#about') About
-          li
-            a(href='#contact') Contact
-        a#logout-btn.btn.btn-info.pull-right.top-bar-form-button.hide(href='logout/') Logout
-        ul.pull-right
-          li
-            p#logininfo.login-prompt
-        a#signup-btn.btn.pull-right.top-bar-form-button(href='#signup-modal', data-toggle="modal") Sign Up
-        form.pull-right.form-horizontal.top-bar-form(method="post", id="loginForm")
-          input.input-small.top-bar-form-textbox(id="username", type="text", name="User", placeholder="Username")
-          input.input-small.top-bar-form-textbox(id="password", type="password", name="Password", placeholder="Password")
-          button.btn.btn-primary.top-bar-form-button(type="submit", value="Sign In") Sign In
+!!!
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/bootstrap/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap/bootstrap-responsive.min.css')
+    link(rel='stylesheet', href='/stylesheets/custom.css')
+    
+    script(type='text/javascript', src='/js/lib/jquery/jquery-1.7.1.js')
+    script(type='text/javascript', src='/js/lib/bootstrap/bootstrap-modal.js')
+    script(type='text/javascript', src='/js/index.js');
 
-div.container
-  div.content
-    div.page-header
-      h1 Main Page 
-        small Welcome to #{title}
-    div.row-fluid
-      div.span9
-        div.hero-unit
-          h2 Page Content
-          p Primary content of the blog goes here
-          div#signup-modal.modal.hide
-            div.modal-header
-              a.close(href='#', data-dismiss="modal") x
-              h3 Sign Up Form
-            div.modal-body
-              div.row-fluid
-                div.span9
-                  form.form-horizontal(method="post", id="signup-form")
-                    div.control-group
-                      label.control-label(for="username") User Name :
-                      div.controls
-                        input.input-small(type="text", id="username")
-                    div.control-group
-                      label.control-label(for="useremail") Email :
-                      div.controls
-                        input.input-small(type="text", id="useremail")
-                    div.control-group
-                      label.control-label(for="passwordFirst") Password :
-                      div.controls
-                        input.input-small(type="password", id="passwordFirst")
-                    div.control-group
-                      label.control-label(for="password") Password(Once More) :
-                      div.controls
-                        input.input-small(type="password", id="password")
-                    
-            div.modal-footer
-              a.btn.btn-danger(href='#', data-dismiss="modal") Cancel
-              a.btn.btn-primary(href='#', data-dismiss="modal") Sign Up
-          div#signup-error-modal.modal.hide
-            div.modal-header
-              a.close(href='#', data-dismiss="modal") x
-            div.modal-body
-              div.alert.alert-error
-                strong Oh snap !
-                  p Incorrect Login Credentials... Please Try Again... 
-            div.modal-footer
-      div.span3
-        div.well.sidebar-nav
-          h3 Secondary Content
+body
+  include topbar
+  div.container
+    div.content
+      div.page-header
+        h1 Main Page 
+          small Welcome to #{title}
+      div.row-fluid
+        div.span9
+          div.hero-unit
+            h2 Page Content
+            p Primary content of the blog goes here
+            include signupModal
+            include signupErrorModal    
+        div.span3
+            div.well.sidebar-nav
+              h3 Secondary Content
         
-  div.footer 
-    p &copy; nodeblox 2011
+    div.footer 
+      p &copy; nodeblox 2011

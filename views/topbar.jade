@@ -1,0 +1,21 @@
+div.navbar.navbar-fixed-top
+    div.navbar-inner
+      div.container
+        a.brand(href='#') #{title}
+        div.nav-collapse
+          ul.nav
+            li.active
+              a(href='#') Home
+            li
+              a(href='#about') About
+            li
+              a(href='#contact') Contact
+          a#logout-btn.btn.btn-info.pull-right.top-bar-form-button.hide(href='logout/') Logout
+          ul.pull-right
+            li
+              p#logininfo.login-prompt
+          a#signup-btn.btn.pull-right.top-bar-form-button(href='#signup-modal', data-toggle="modal") Sign Up
+          form.pull-right.form-horizontal.top-bar-form(method="post", id="loginForm")
+            input.input-small.top-bar-form-textbox(id="username", type="text", name="User", placeholder="Username")
+            input.input-small.top-bar-form-textbox(id="password", type="password", name="Password", placeholder="Password")
+            button.btn.btn-primary.top-bar-form-button(type="submit", value="Sign In") Sign In

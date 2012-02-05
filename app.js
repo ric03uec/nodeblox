@@ -5,6 +5,8 @@
  */
 var express = require('express');
 var util    = require('util');
+var Logger = require('devnull');
+var logger = new Logger({namespacing : 0});
 var mongoose = require('mongoose');
 var app  = express.createServer();
 
@@ -42,5 +44,6 @@ require('./routes')(app);
 
 app.listen(2727);
 util.log("Express server listening on port " + app.address().port + " in mode " + app.settings.env);
+logger.log("Express server listening on port " + app.address().port + " in mode " + app.settings.env);
 
 module.exports = app; 

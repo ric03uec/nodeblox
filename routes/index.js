@@ -1,6 +1,8 @@
 'use strict'
 
-var util = require('util')
+var util = require('util');
+var Logger = require('devnull');
+var logger = new Logger();
 var User  = require('../schemas/User');
 /*
  * GET home page.
@@ -11,6 +13,7 @@ module.exports = function(app){
     */
   app.get('/', function(req, res){
     util.log('Serving request for url [GET]' + req.route.path)
+    logger.log('Serving request for url [GET]' + req.route.path)
     
     res.render('index', { title: 'nodeBlox' })
   });

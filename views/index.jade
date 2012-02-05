@@ -10,7 +10,7 @@ div.navbar.navbar-fixed-top
             a(href='#about') About
           li
             a(href='#contact') Contact
-        button.btn.pull-right.top-bar-form-button Sign Up
+        a#modal-btn.btn.pull-right.top-bar-form-button(href='#my-modal', data-toggle="modal") Sign Up
         form.pull-right.form-horizontal.top-bar-form(method="post", id="loginForm")
           input.input-small.top-bar-form-textbox(id="username", type="text", name="User", placeholder="Username")
           input.input-small.top-bar-form-textbox(id="password", type="password", name="Password", placeholder="Password")
@@ -25,9 +25,10 @@ div.container
       div.span9
         div.hero-unit
           h2 Page Content
+          p Primary content of the blog goes here
           div#my-modal.modal.hide
             div.modal-header
-              a.close(href='#') x
+              a.close(href='#', data-dismiss="modal") x
               h3 Sign Up
             div.modal-body
               p signup forms go here

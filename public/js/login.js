@@ -29,10 +29,8 @@ var Login = function(){
     backdrop:'static',
     keyboard:'true'
   });
- 
-  $('#modal-btn').click(function(){
-   $('#my-modal').modal('show'); 
-  });
+  $('#my-modal').modal('toggle');
+  
 };
 
 $(document).ready(function(){

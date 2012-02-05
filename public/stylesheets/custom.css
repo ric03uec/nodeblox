@@ -11,9 +11,6 @@ body {
 .footer p {
   text-align: center; /* center align it with the container */
 }
-.container {
-  width: 820px; /* downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
-}
  
 /* The white background content wrapper */
 .content {
@@ -58,4 +55,20 @@ body {
 .login-prompt {
   font-size : 20px;
   color : #ffffff;
+}
+
+.top-bar-form {
+  margin-bottom : -1px;
+}
+
+.top-bar-form-button {
+  margin-top: 1px;
+  margin-left : 2px;
+  margin-right: 2px;
+}
+
+.top-bar-form-textbox {
+  margin-right : 2px;
+  margin-left : 2px;
+  margin-top : 4px;
 }

@@ -1,42 +1,42 @@
-div.topbar
-  div.fill
+div.navbar.navbar-fixed-top
+  div.navbar-inner
     div.container
       a.brand(href='#') #{title}
-      ul.nav
-        li.active
-          a(href='#') Home
-        li
-          a(href='#about') About
-        li
-          a(href='#contact') Contact
-      div#logindiv
-        form.pull-right(method="post", id="loginForm")
-          input.input-small(id="username", type="text", name="User", placeholder="Username")
-          input.input-small(id="password", type="password", name="Password", placeholder="Password")
-          input.btn.primary(type="submit", value="Sign In")
-          
-          button#modal-btn.btn.pull-right Sign Up
-      p#loginPrompt.pull-right.login-prompt
+      div.nav-collapse
+        ul.nav
+          li.active
+            a(href='#') Home
+          li
+            a(href='#about') About
+          li
+            a(href='#contact') Contact
+        button.btn.pull-right.top-bar-form-button Sign Up
+        form.pull-right.form-horizontal.top-bar-form(method="post", id="loginForm")
+          input.input-small.top-bar-form-textbox(id="username", type="text", name="User", placeholder="Username")
+          input.input-small.top-bar-form-textbox(id="password", type="password", name="Password", placeholder="Password")
+          button.btn.btn-primary.top-bar-form-button(type="submit", value="Sign In") Sign In
 
 div.container
   div.content
     div.page-header
       h1 Main Page 
         small Welcome to #{title}
-    div.row
-      div.span10
-        h2 Page Content
-        div#my-modal.modal.hide
-          div.modal-header
-            a.close(href='#') x
-            h3 Sign Up
-          div.modal-body
-            p signup forms go here
-          div.modal-footer
-            a.btn.primary(href='#') Primary
-            a.btn.secondary(href='#') Secondary
-      div.span4
-        h3 Secondary Content
+    div.row-fluid
+      div.span9
+        div.hero-unit
+          h2 Page Content
+          div#my-modal.modal.hide
+            div.modal-header
+              a.close(href='#') x
+              h3 Sign Up
+            div.modal-body
+              p signup forms go here
+            div.modal-footer
+              a.btn.primary(href='#') Primary
+              a.btn.secondary(href='#') Secondary
+      div.span3
+        div.well.sidebar-nav
+          h3 Secondary Content
         
   div.footer 
     p &copy; nodeblox 2011

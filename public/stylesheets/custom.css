@@ -53,6 +53,8 @@ body {
 }
 
 .login-prompt {
+  margin-top : 10px;
+  margin-bottom : 2px;
   font-size : 20px;
   color : #ffffff;
 }

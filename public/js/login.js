@@ -1,10 +1,14 @@
 /**
   * Make an Object that encompasses the behavior of this script. This way,
-  * only this Objec will be exposed to other scripts, thus reducing the namespace
+  * only this Object will be exposed to other scripts, thus reducing the namespace
   * conflicts
   */
 var Login = function(){
-  
+
+  $('#logininfo').hide();
+  /**
+    * Login form submit
+    */
   $('#loginForm').submit(function(event){
     /**
       * Prevent the form from taking default action.
@@ -20,19 +24,22 @@ var Login = function(){
     if(username && password){
       $.post('/login', $(this).serialize(), function(response){
         $('#loginForm').hide();
-        $('#loginPrompt').html('Authenticated');
+        $('#signup-btn').hide();
+        $('#logininfo').html('Authenticated');
+        $('#logininfo').show();
       });
     }
   });
   
-  $('#my-modal').modal({
+  $('#signup-modal').modal({
     backdrop:'static',
     keyboard:'true'
   });
-  $('#my-modal').modal('toggle');
+  $('#signup-modal').modal('toggle');
   
 };
 
-$(document).ready(function(){
-  Login(); 
-});
+/**
+  * Initialize all the elements defined in this object
+  */
+Login();

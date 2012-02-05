@@ -10,6 +10,7 @@ div.navbar.navbar-fixed-top
             a(href='#about') About
           li
             a(href='#contact') Contact
+        a#logout-btn.btn.btn-info.pull-right.top-bar-form-button.hide(href='logout/') Logout
         ul.pull-right
           li
             p#logininfo.login-prompt
@@ -35,17 +36,28 @@ div.container
               h3 Sign Up Form
             div.modal-body
               div.row-fluid
-                div.span6
-                  label Login
-                  form.well(method="post", id="loginForm")
-                    input.input-small(id="username", type="text", name="User", placeholder="Username")
-                    input.input-small(id="password", type="password", name="Password", placeholder="Password")
-                    button.btn.btn-primary(type="submit", value="Sign In") Sign In
-                div.span6
-                  label Sign Up
+                div.span9
+                  form.form-horizontal(method="post", id="signup-form")
+                    div.control-group
+                      label.control-label(for="username") User Name :
+                      div.controls
+                        input.input-small(type="text", id="username")
+                    div.control-group
+                      label.control-label(for="useremail") Email :
+                      div.controls
+                        input.input-small(type="text", id="useremail")
+                    div.control-group
+                      label.control-label(for="passwordFirst") Password :
+                      div.controls
+                        input.input-small(type="password", id="passwordFirst")
+                    div.control-group
+                      label.control-label(for="password") Password(Once More) :
+                      div.controls
+                        input.input-small(type="password", id="password")
+                    
             div.modal-footer
-              a.btn.primary(href='#', data-dismiss="modal") Primary
-              a.btn.secondary(href='#', data-dismiss="modal") Secondary
+              a.btn.btn-danger(href='#', data-dismiss="modal") Cancel
+              a.btn.btn-primary(href='#', data-dismiss="modal") Sign Up
           div#signup-error-modal.modal.hide
             div.modal-header
               a.close(href='#', data-dismiss="modal") x

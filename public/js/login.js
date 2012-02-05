@@ -23,12 +23,13 @@ var Login = function(){
       */
     if(username && password){
       $.post('/login', $(this).serialize(), function(response){
-        if(response.message === 'success'){
+        if(response.retStatus === 'success'){
           $('#loginForm').hide();
           $('#signup-btn').hide();
           $('#logininfo').html('Authenticated');
           $('#logininfo').show();
-        }else{
+          $('#logout-btn').show();
+        }else if(response.retStatus === 'failure'){
           $('#signup-error-modal').modal('show');
         }
       });

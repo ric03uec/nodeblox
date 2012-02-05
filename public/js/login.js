@@ -23,10 +23,14 @@ var Login = function(){
       */
     if(username && password){
       $.post('/login', $(this).serialize(), function(response){
-        $('#loginForm').hide();
-        $('#signup-btn').hide();
-        $('#logininfo').html('Authenticated');
-        $('#logininfo').show();
+        if(response.message === 'success'){
+          $('#loginForm').hide();
+          $('#signup-btn').hide();
+          $('#logininfo').html('Authenticated');
+          $('#logininfo').show();
+        }else{
+          $('#signup-error-modal').modal('show');
+        }
       });
     }
   });
@@ -36,6 +40,13 @@ var Login = function(){
     keyboard:'true'
   });
   $('#signup-modal').modal('toggle');
+  
+  $('#signup-error-modal').modal({
+    backdrop:'static',
+    keyboard:'true'
+  });
+  
+  $('#signup-error-modal').modal('toggle');
   
 };
 

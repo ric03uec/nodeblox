@@ -27,6 +27,7 @@ module.exports = function(app){
   
     User.validateUser(username, password, function(err, user){
       if(err && !user){
+        logger.error('Login failed');
         res.render('user/authFailed', {title : 'nodeBlox'});
       }else{
         res.json({

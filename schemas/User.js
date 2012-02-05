@@ -29,7 +29,7 @@ User.statics.findUser = function(username, password, cb){
 User.statics.validateUser = function(username, password, cb){
   this.find({'username' : username}, function(err, response){
     var user = response[0];
-    if(!user){
+    if(!user || response.length === 0){
       cb(new Error('AuthFailed : Username does not exist'));
     }else{
       if(password == user.password){

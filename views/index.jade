@@ -32,12 +32,28 @@ div.container
           div#signup-modal.modal.hide
             div.modal-header
               a.close(href='#', data-dismiss="modal") x
-              h3 Sign Up
+              h3 Sign Up Form
             div.modal-body
-              p signup forms go here
+              div.row-fluid
+                div.span6
+                  label Login
+                  form.well(method="post", id="loginForm")
+                    input.input-small(id="username", type="text", name="User", placeholder="Username")
+                    input.input-small(id="password", type="password", name="Password", placeholder="Password")
+                    button.btn.btn-primary(type="submit", value="Sign In") Sign In
+                div.span6
+                  label Sign Up
             div.modal-footer
-              a.btn.primary(href='#') Primary
-              a.btn.secondary(href='#') Secondary
+              a.btn.primary(href='#', data-dismiss="modal") Primary
+              a.btn.secondary(href='#', data-dismiss="modal") Secondary
+          div#signup-error-modal.modal.hide
+            div.modal-header
+              a.close(href='#', data-dismiss="modal") x
+            div.modal-body
+              div.alert.alert-error
+                strong Oh snap !
+                  p Incorrect Login Credentials... Please Try Again... 
+            div.modal-footer
       div.span3
         div.well.sidebar-nav
           h3 Secondary Content

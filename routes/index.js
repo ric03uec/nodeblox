@@ -24,13 +24,15 @@ module.exports = function(app){
     logger.log('Serving request for url [POST] ' + req.route.path);
     var username = req.body.User;
     var password = req.body.Password;
-  
+
     User.validateUser(username, password, function(err, user){
+      console.log(user);
       if(err && !user){
         res.json({
           retStatus : 'failure'  
         });
       }else{
+        req.session.user = user;
         res.json({
           retStatus : 'success',
           user : user

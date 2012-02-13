@@ -17,6 +17,7 @@ mongoose.connect('mongodb://localhost/testdb');
   */
 app.configure(function(){
   app.set('views', __dirname + '/views');
+  app.enable('jsonp callback');
   app.set('view engine', 'jade');
   app.set('view options', {layout : false});
   app.use(express.bodyParser());
@@ -27,6 +28,13 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
+  
+});
+
+app.dynamicHelpers({
+  session : function(req, res){
+    return req.session;
+  }
 });
 
 /**

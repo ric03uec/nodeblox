@@ -10,7 +10,7 @@ function loadScript(url, callback){
   head.appendChild(script);
 }
 
-$(document).ready(function(){
+$(document).ready(function(response){
   loadScript('js/login.js', function(){
     console.log('Login.js Loaded');  
   });

@@ -26,7 +26,6 @@ module.exports = function(app){
     var password = req.body.Password;
 
     User.validateUser(username, password, function(err, user){
-      console.log(user);
       if(err && !user){
         res.json({
           retStatus : 'failure'  
@@ -39,6 +38,15 @@ module.exports = function(app){
         });
       }
     });
+  });
+
+  /**
+    * Logout the current user and clear the session
+    */
+  app.get('/logout', function(req, res){
+    logger.log('Serving request for url [GET] ' + req.route.path);
+    req.session.user = undefined;
+    res.redirect('/');
   });
 
   /**

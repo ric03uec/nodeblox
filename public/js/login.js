@@ -5,7 +5,6 @@
   */
 var Login = function(){
 
-  $('#logininfo').hide();
   /**
     * Login form submit
     */
@@ -26,16 +25,20 @@ var Login = function(){
         if(response.retStatus === 'success'){
           $('#loginForm').hide();
           $('#signup-btn').hide();
-          $('#logininfo').html('Authenticated');
-          $('#logininfo').show();
-//          $('#logout-btn').show();
+          $(location).attr('href', '/');
         }else if(response.retStatus === 'failure'){
           $('#signup-error-modal').modal('show');
         }
       });
     }
   });
-  
+ 
+  $('#logout-btn').click(function(){
+    $.get('/logout', function(response){
+      
+    });
+  });
+
   $('#signup-modal').modal({
     backdrop:'static',
     keyboard:'true'

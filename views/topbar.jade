@@ -10,9 +10,9 @@ div.navbar.navbar-fixed-top
               a(href='#about') About
             li
               a(href='#contact') Contact
-        - if(session.user)
+        -if(session.user)
           a#logout-btn.btn.btn-info.pull-right.top-bar-form-button.hide(href='logout/') Logout
-        - else
+        -else
           ul.pull-right
             li
               p#logininfo.login-prompt

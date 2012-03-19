@@ -23,7 +23,7 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.cookieParser());
   app.use(express.session({
-    secret : 'abcdefg'      
+    secret : 'devadotD'      
   }));
   app.use(express.methodOverride());
   app.use(app.router);
@@ -41,6 +41,10 @@ app.dynamicHelpers({
   * Application environment(s) Configuration
   */
 app.configure('development', function(){
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
+});
+
+app.configure('stage', function(){
   app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
 });
 

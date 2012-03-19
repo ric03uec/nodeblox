@@ -1,7 +1,7 @@
 !!!
 html
   head
-    title= title
+    title='nodeBlox'
     link(rel='stylesheet', href='/stylesheets/bootstrap/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/bootstrap/bootstrap-responsive.min.css')
     link(rel='stylesheet', href='/stylesheets/custom.css')
@@ -14,17 +14,18 @@ body
   include topbar
   div.container
     div.content
-      div.page-header
-        h1 Main Page 
-          small Welcome to #{title}
-      div.row-fluid
-        div.span9
-          div.hero-unit
-            h2 Page Content
-            p Primary content of the blog goes here
-            include signupModal
-            include signupErrorModal    
-        div.span3
+      block content
+        div.page-header
+          h1 Main Page 
+            small Welcome to nodeBlox 
+        div.row-fluid
+          div.span9
+            div.hero-unit
+              h2 Page Content
+              p Primary content of the blog goes here
+              include signupModal
+              include signupErrorModal    
+          div.span3
             div.well.sidebar-nav
               h3 Secondary Content
         

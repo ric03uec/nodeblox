@@ -1,15 +1,15 @@
 div.navbar.navbar-fixed-top
   div.navbar-inner
     div.container
-      a.brand(href='#') #{title}
+      a.brand(href='/') nodeBlox 
       div.nav-collapse
         ul.nav
           li.active
-            a(href='#') Home
+            a(href='/') Home
           li
-            a(href='#about') About
+            a(href='/about') About
           li
-            a(href='#contact') Contact
+            a(href='/contact') Contact
           -if(session.user)
             li
               a(href='/admin') Admin

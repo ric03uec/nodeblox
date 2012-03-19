@@ -14,7 +14,7 @@ module.exports = function(app){
   app.get('/', function(req, res){
     logger.log('Serving request for url [GET]' + req.route.path)
     
-    res.render('index', { title: 'nodeBlox' })
+    res.render('index')
   });
 
   /**
@@ -59,5 +59,10 @@ module.exports = function(app){
     var password = req.body.Password;
 
     util.log('Username' + username + '   Pass ' + password);
+  });
+
+  app.get('/admin', function(req, res){
+    util.log('Serving request for url [GET] ' + req.route.path);    
+    res.render('post');
   });
 };

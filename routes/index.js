@@ -63,6 +63,10 @@ module.exports = function(app){
 
   app.get('/admin', function(req, res){
     util.log('Serving request for url [GET] ' + req.route.path);    
-    res.render('post');
+    if(req.session.user){
+      res.render('post');
+    }else{
+      res.redirect('/');
+    }
   });
 };

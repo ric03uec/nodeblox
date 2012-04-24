@@ -69,4 +69,9 @@ module.exports = function(app){
       res.redirect('/');
     }
   });
+
+  app.get('/contact', function(req, res){
+    util.log('Serving request for url[GET] ' + req.route.path);
+    res.render('contact');
+  });
 };

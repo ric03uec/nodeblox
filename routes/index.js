@@ -70,6 +70,10 @@ module.exports = function(app){
     }
   });
 
+  app.post('/admin/save/post', function(req, res){
+        
+  });
+
   app.get('/contact', function(req, res){
     util.log('Serving request for url[GET] ' + req.route.path);
     res.render('contact');

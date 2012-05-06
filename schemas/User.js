@@ -22,7 +22,7 @@ var User = new Schema({
   'password' : String,
 });
 
-User.statics.findUser = function(username, password, cb){
+User.statics.findUser = function(username, cb){
   return  this.find({'username' : username}, cb);
 };
 

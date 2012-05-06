@@ -21,15 +21,17 @@ Admin.initIndexPage = function(){
 
   $('#postForm').submit(function(event){
     event.preventDefault();    
-    var postSubject = $('#postSubject').val();
-    var postContent = $('#postContent').val();
-    var postTags = $('#postTags').val();
 
-    console.log(postSubject);
-    console.log(postContent);
-    $.post('/admin/save/post', function(respose){
+    var postContent = {
+      'postSubject' : $('#postSubject').val(),
+      'postContent' : $('#postContent').val(),
+      'postTags' : $('#postTags').val()
+    };
+
+    $.post('/admin/save/post', {'postContent' : postContent},function(response){
       if(response.retStatus === 'success'){
         console.log('saved successfully');
+        $(location).attr('href', '/');
       }else{
       } 
     });

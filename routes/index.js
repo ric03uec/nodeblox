@@ -4,6 +4,8 @@ var util = require('util');
 var Logger = require('devnull');
 var logger = new Logger({namespacing : 0});
 var User  = require('../schemas/User');
+var Post = require('../schemas/Post');
+
 /*
  * GET home page.
  */
@@ -70,8 +72,32 @@ module.exports = function(app){
     }
   });
 
+  /**
+    * Save the post to database
+    */
   app.post('/admin/save/post', function(req, res){
-        
+    var postContent = req.body.postContent;
+
+    var post = new Post();
+    post.postSubject =  postContent.postSubject;
+    post.content= postContent.postContent;
+    post.author = req.session.user.username;
+    post.tags =  postContent.postTags;
+
+    post.save(function(err, response){
+      if(!err && response){
+        util.log('Successfully saved Post with id : ' + response.id);
+        res.json({
+          'retStatus' : 'success',
+          'data' : response
+        })
+      }else{
+        res.json({
+          'retStatus' : 'failure',
+          'error' : err
+        });
+      }
+    });
   });
 
   app.get('/contact', function(req, res){

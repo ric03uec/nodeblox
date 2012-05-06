@@ -6,6 +6,16 @@ var logger = new Logger({namespacing : 0});
 var User  = require('../schemas/User');
 var Post = require('../schemas/Post');
 
+var getAllMeta = function(req, res, next){
+  Post.getAllMeta(function(err, postsList){
+    if(!err && postsList){
+      console.log(postsList);
+      req.postsList = postsList;
+    }
+    next(err);
+  });
+};
+
 /*
  * GET home page.
  */
@@ -63,10 +73,10 @@ module.exports = function(app){
     util.log('Username' + username + '   Pass ' + password);
   });
 
-  app.get('/admin', function(req, res){
+  app.get('/admin', getAllMeta, function(req, res){
     util.log('Serving request for url [GET] ' + req.route.path);    
     if(req.session.user){
-      res.render('post');
+      res.render('post', {'postsList' : req.postsList});
     }else{
       res.redirect('/');
     }
@@ -79,10 +89,10 @@ module.exports = function(app){
     var postContent = req.body.postContent;
 
     var post = new Post();
-    post.postSubject =  postContent.postSubject;
-    post.content= postContent.postContent;
-    post.author = req.session.user.username;
-    post.tags =  postContent.postTags;
+    post.subject  = postContent.postSubject;
+    post.content  = postContent.postContent;
+    post.author   = req.session.user.username;
+    post.tags     = postContent.postTags;
 
     post.save(function(err, response){
       if(!err && response){
@@ -98,6 +108,29 @@ module.exports = function(app){
         });
       }
     });
+  });
+
+  app.get('/post/show/:key', function(req, res){
+    Post.findByKey(req.params.key, function(err, postData){
+      if(!err && postData){
+      postData = postData[0];
+      console.log(postData);
+      /**
+        * TODO : cannot work this way because the text in wysihtml5 box has to be set through its jquery methods
+        */
+        res.render('editPost', {'postData' : postData});
+      }else{
+        util.log('Error in fetching Post by key : ' + req.params.key);
+      }
+    }); 
+  });
+
+  app.post('/admin/save/', function(req, res){
+    //container for saving a post
+  });
+
+  app.get('/admin/remove/:key', function(req, res){
+    //container for deleting a post
   });
 
   app.get('/contact', function(req, res){

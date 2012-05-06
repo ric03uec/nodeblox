@@ -35,4 +35,22 @@ var Post = new Schema({
            }
 });
 
+/**
+  * Get complete post details for all the posts
+  */
+Post.statics.getAll = function(cb){
+  return this.find(cb);
+};
+
+/**
+  * Get only the meta information of all the posts.
+  */
+Post.statics.getAllMeta = function(cb){
+  return this.find({}, ['key','subject', 'author', 'tags'], cb);
+};
+
+Post.statics.findByKey = function(key, cb){
+  return this.find({'key' : key}, cb);
+};
+
 module.exports = mongoose.model('Post', Post);

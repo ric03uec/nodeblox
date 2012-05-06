@@ -1,0 +1,8 @@
+div#postListDiv
+  -if(postsList.length > 0){
+    -each post in postsList
+      a(href="/post/show/#{post.key}") #{post.subject}
+      br
+  -}else{
+    h3 No posts till now..
+  -}

@@ -1,0 +1,23 @@
+extends index
+
+block content
+  div.page-header
+    h1 nodeBlox
+      small admin
+  div.row-fluid
+    div.hero-unit
+      div.well
+        h2 Edit Post
+        p -----------------------------------------------------
+        form#postForm.form-vertical(action='/admin/save')
+          div#subjectDiv
+            label Subject
+            input#postSubject.input-xxlarge(name="postSubject", type="text", value="#{postData.subject}")
+          div#contentDiv
+            label Post Content
+            textarea#postContent.input-xxlarge(name="postContent", type="text", value="#{postData.content}", rows=15)
+          div#tagsDiv
+            label Tags
+            input#postTags.input-xxlarge(name="postTags", type="text", value="#{postData.tags}")
+          div#submitDiv
+            input.btn.btn-primary(type="submit", value="Save Post")

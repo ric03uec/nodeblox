@@ -15,7 +15,7 @@ div.navbar.navbar-fixed-top
               a(href='/admin') Admin
       -if(session.user)
         div#logoutsection.pull-right
-          a#logout-btn.btn.btn-info.pull-right.top-bar-form-button(href='logout/') Logout
+          a#logout-btn.btn.btn-info.pull-right.top-bar-form-button(href='/logout') Logout
           p#loginprompt.pull-right.login-prompt #{session.user.username} 
             small logged In
       -else

@@ -9,7 +9,6 @@ var Post = require('../schemas/Post');
 var getAllMeta = function(req, res, next){
   Post.getAllMeta(function(err, postsList){
     if(!err && postsList){
-      console.log(postsList);
       req.postsList = postsList;
     }
     next(err);
@@ -88,39 +87,71 @@ module.exports = function(app){
   app.post('/admin/save/post', function(req, res){
     var postContent = req.body.postContent;
 
-    var post = new Post();
-    post.subject  = postContent.postSubject;
-    post.content  = postContent.postContent;
-    post.author   = req.session.user.username;
-    post.tags     = postContent.postTags;
+    if(postContent.postKey === '' || postContent.postKey === undefined){
+      var post = new Post();
+      post.subject  = postContent.postSubject;
+      post.content  = postContent.postContent;
+      post.author   = req.session.user.username;
+      post.tags     = postContent.postTags;
 
-    post.save(function(err, response){
-      if(!err && response){
-        util.log('Successfully saved Post with id : ' + response.id);
-        res.json({
-          'retStatus' : 'success',
-          'data' : response
-        })
-      }else{
-        res.json({
+      post.save(function(err, response){
+        if(!err && response){
+          util.log('Successfully saved Post with id : ' + response.id);
+          res.json({
+            'retStatus' : 'success',
+            'data' : response
+          })
+        }else{
+          util.log('Error saving the Post : ' + err);
+          res.json({
           'retStatus' : 'failure',
-          'error' : err
-        });
-      }
-    });
+            'error' : err
+          });
+        }
+      });
+    }else{
+      var conditions = {'key' : postContent.postKey};
+      var update = {
+        'subject' : postContent.postSubject,
+        'content' : postContent.postContent,
+        'tags' : postContent.postTags
+      };
+
+      Post.update(conditions, update, null, function(err, numAffected){
+        if(!err && numAffected){
+          util.log('Successfully updated the Post with id : ' + postContent.postKey);
+          res.json({
+            'retStatus' : 'success',
+            'numAffected' : numAffected
+          });
+        }else{
+          util.log('Error updating the Post with id : ' + postContent.postKey + ' ' + err);
+          res.json({
+            'retStatus' : 'failure'
+          });
+        }
+      });
+    }
   });
 
   app.get('/post/show/:key', function(req, res){
     Post.findByKey(req.params.key, function(err, postData){
       if(!err && postData){
       postData = postData[0];
-      console.log(postData);
       /**
         * TODO : cannot work this way because the text in wysihtml5 box has to be set through its jquery methods
         */
-        res.render('editPost', {'postData' : postData});
+      //  res.render('editPost', {'postData' : postData});
+        res.json({
+          'retStatus' : 'success',
+          'postData' : postData
+        });
       }else{
         util.log('Error in fetching Post by key : ' + req.params.key);
+        res.json({
+          'retStatuts' : 'failure',
+          'msg' : 'Error in fetching Post by key ' + req.params.key
+        });
       }
     }); 
   });

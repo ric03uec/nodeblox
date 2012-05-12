@@ -10,6 +10,8 @@ block content
         h2 New Post
         p -----------------------------------------------------
         form#postForm.form-vertical(action='/save/post')
+          div#postId
+            input#postId.input-xxlarge(name="postId", type="text", value="", style="display:none")
           div#subjectDiv
             label Subject
             input#postSubject.input-xxlarge(name="postSubject", type="text", placeholder="Subject")

@@ -1,7 +1,7 @@
 div#postListDiv
   -if(postsList.length > 0){
     -each post in postsList
-      a(href="/post/show/#{post.key}") #{post.subject}
+      a.postLink(id="#{post.key}", href="#") #{post.subject}
       br
   -}else{
     h3 No posts till now..

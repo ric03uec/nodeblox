@@ -1,4 +1,6 @@
-div#postDisplay
+div(id="post-#{post.key}")
   h1 #{post.subject}
   br
-  #{post.content}
+  div(id="showPostContent-#{post.key}")
+    p!= post.content
+  br

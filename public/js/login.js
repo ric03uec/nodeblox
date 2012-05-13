@@ -49,9 +49,7 @@ var Login = function(){
     backdrop:'static',
     keyboard:'true'
   });
-  
   $('#signup-error-modal').modal('toggle');
-  
 };
 
 /**

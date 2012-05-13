@@ -24,8 +24,14 @@ module.exports = function(app){
     */
   app.get('/', function(req, res){
     logger.log('Serving request for url [GET]' + req.route.path)
-    
-    res.render('index')
+    Post.getAll(function(err, allPosts){
+      if(!err && allPosts){
+        res.render('index', {'allPosts' : allPosts});
+      }else{
+        util.log('Error fetching posts from database : ' + err);
+        res.render('error');
+      }
+    });
   });
 
   /**

@@ -6,6 +6,9 @@ var logger = new Logger({namespacing : 0});
 var User  = require('../schemas/User');
 var Post = require('../schemas/Post');
 
+/**
+  * Get Meta information about all the Post's
+  */
 var getAllMeta = function(req, res, next){
   Post.getAllMeta(function(err, postsList){
     if(!err && postsList){
@@ -144,10 +147,6 @@ module.exports = function(app){
     Post.findByKey(req.params.key, function(err, postData){
       if(!err && postData){
       postData = postData[0];
-      /**
-        * TODO : cannot work this way because the text in wysihtml5 box has to be set through its jquery methods
-        */
-      //  res.render('editPost', {'postData' : postData});
         res.json({
           'retStatus' : 'success',
           'postData' : postData

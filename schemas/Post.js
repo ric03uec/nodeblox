@@ -30,7 +30,8 @@ var Post = new Schema({
               },
   'content' : {type : String},
   'author': String,
-  'tags' : {type : String,
+  'tags' : {
+            type : String,
             set : toLower
            }
 });
@@ -39,7 +40,9 @@ var Post = new Schema({
   * Get complete post details for all the posts
   */
 Post.statics.getAll = function(cb){
-  return this.find(cb);
+  var query = this.find({});
+  query.desc('key');
+  return query.exec(cb);
 };
 
 /**

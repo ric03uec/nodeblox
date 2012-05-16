@@ -1,0 +1,33 @@
+extends index
+
+block content
+  div.page-header
+    h1 nodeBlox
+      small admin
+  div.row-fluid
+    div.span8
+      div.well
+        h2 New Post
+        p -----------------------------------------------------
+        form#postForm.form-vertical(action='/save/post')
+          div#postId
+            input#postId.input-xxlarge(name="postId", type="text", value="", style="display:none")
+          div#subjectDiv
+            label Subject
+            input#postSubject.input-xxlarge(name="postSubject", type="text", placeholder="Subject")
+          div#contentDiv
+            label Post Content
+            textarea#postContent.input-xxlarge(name="postContent", placeholder="Post Content", rows=15)
+          div#tagsDiv
+            label Tags
+            input#postTags.input-xxlarge(name="postTags", type="text", placeholder="Tags")
+          div#submitDiv
+            input.btn.btn-primary(type="submit", value="Save Post")
+    div.span4
+      div.well
+        h2 Previous Posts
+        small (Click to edit any Post)
+        p -----------------------------------------------------
+        include postsList
+        table#prevPosts.table.table-striped.table-condensed
+      

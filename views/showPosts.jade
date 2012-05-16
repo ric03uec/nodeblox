@@ -1,0 +1,8 @@
+div#postListDiv
+  -if(allPosts.length > 0){
+    -each post in allPosts
+      include postDisplay
+    br
+  -}else{
+    h3 No posts till now..
+  -}

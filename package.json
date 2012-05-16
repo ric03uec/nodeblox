@@ -8,5 +8,7 @@
     , "mongoose": "latest"
     , "devnull":"latest"
     , "bcrypt":"0.4.1"
+    , "colors":"latest
+    , "mongodb":"latest"
   }
 }

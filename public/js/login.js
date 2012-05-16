@@ -25,7 +25,7 @@ var Login = function(){
         if(response.retStatus === 'success'){
           $('#loginForm').hide();
           $('#signup-btn').hide();
-          $(location).attr('href', '/');
+          $(location).attr('href', '/admin');
         }else if(response.retStatus === 'failure'){
           $('#signup-error-modal').modal('show');
         }
@@ -49,9 +49,7 @@ var Login = function(){
     backdrop:'static',
     keyboard:'true'
   });
-  
   $('#signup-error-modal').modal('toggle');
-  
 };
 
 /**

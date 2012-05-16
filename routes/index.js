@@ -4,6 +4,20 @@ var util = require('util');
 var Logger = require('devnull');
 var logger = new Logger({namespacing : 0});
 var User  = require('../schemas/User');
+var Post = require('../schemas/Post');
+
+/**
+  * Get Meta information about all the Post's
+  */
+var getAllMeta = function(req, res, next){
+  Post.getAllMeta(function(err, postsList){
+    if(!err && postsList){
+      req.postsList = postsList;
+    }
+    next(err);
+  });
+};
+
 /*
  * GET home page.
  */
@@ -13,8 +27,14 @@ module.exports = function(app){
     */
   app.get('/', function(req, res){
     logger.log('Serving request for url [GET]' + req.route.path)
-    
-    res.render('index', { title: 'nodeBlox' })
+    Post.getAll(function(err, allPosts){
+      if(!err && allPosts){
+        res.render('index', {'allPosts' : allPosts});
+      }else{
+        util.log('Error fetching posts from database : ' + err);
+        res.render('error');
+      }
+    });
   });
 
   /**
@@ -59,5 +79,98 @@ module.exports = function(app){
     var password = req.body.Password;
 
     util.log('Username' + username + '   Pass ' + password);
+  });
+
+  app.get('/admin', getAllMeta, function(req, res){
+    util.log('Serving request for url [GET] ' + req.route.path);    
+    if(req.session.user){
+      res.render('post', {'postsList' : req.postsList});
+    }else{
+      res.redirect('/');
+    }
+  });
+
+  /**
+    * Save the post to database
+    */
+  app.post('/admin/save/post', function(req, res){
+    var postContent = req.body.postContent;
+
+    if(postContent.postKey === '' || postContent.postKey === undefined){
+      var post = new Post();
+      post.subject  = postContent.postSubject;
+      post.content  = postContent.postContent;
+      post.author   = req.session.user.username;
+      post.tags     = postContent.postTags;
+
+      post.save(function(err, response){
+        if(!err && response){
+          util.log('Successfully saved Post with id : ' + response.id);
+          res.json({
+            'retStatus' : 'success',
+            'data' : response
+          })
+        }else{
+          util.log('Error saving the Post : ' + err);
+          res.json({
+          'retStatus' : 'failure',
+            'error' : err
+          });
+        }
+      });
+    }else{
+      var conditions = {'key' : postContent.postKey};
+      var update = {
+        'subject' : postContent.postSubject,
+        'content' : postContent.postContent,
+        'tags' : postContent.postTags
+      };
+
+      Post.update(conditions, update, null, function(err, numAffected){
+        if(!err && numAffected){
+          util.log('Successfully updated the Post with id : ' + postContent.postKey);
+          res.json({
+            'retStatus' : 'success',
+            'numAffected' : numAffected
+          });
+        }else{
+          util.log('Error updating the Post with id : ' + postContent.postKey + ' ' + err);
+          res.json({
+            'retStatus' : 'failure'
+          });
+        }
+      });
+    }
+  });
+
+  app.get('/post/show/:key', function(req, res){
+    Post.findByKey(req.params.key, function(err, postData){
+      if(!err && postData){
+      postData = postData[0];
+        res.json({
+          'retStatus' : 'success',
+          'postData' : postData
+        });
+      }else{
+        util.log('Error in fetching Post by key : ' + req.params.key);
+        res.json({
+          'retStatuts' : 'failure',
+          'msg' : 'Error in fetching Post by key ' + req.params.key
+        });
+      }
+    }); 
+  });
+
+  app.post('/admin/save/', function(req, res){
+    //container for saving a post
+  });
+
+  app.get('/admin/remove/:key', function(req, res){
+    //container for deleting a post
+  });
+
+  app.get('/contact', function(req, res){
+    util.log('Serving request for url[GET] ' + req.route.path);
+    res.render('contact');
   });
 };

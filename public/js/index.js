@@ -1,17 +1,15 @@
-function loadScript(url, callback){
-  var head = document.getElementsByTagName('head')[0];
+var Main = {};
+
+Main.loadScript = function(url){
+  var footer = document.getElementById('footer');
   var script = document.createElement('script');
   script.type = 'text/javascript';
   script.src = url;
 
-  script.onreadystatechange = callback;
-  script.onload = callback;
-
-  head.appendChild(script);
+  footer.appendChild(script);
 }
 
+
 $(document).ready(function(response){
-  loadScript('js/login.js', function(){
-    console.log('Login.js Loaded');  
-  });
+  Main.loadScript('js/login.js');
 });

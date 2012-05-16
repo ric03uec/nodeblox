@@ -1,32 +1,34 @@
 !!!
 html
   head
-    title= title
+    title='nodeBlox'
     link(rel='stylesheet', href='/stylesheets/bootstrap/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/bootstrap/bootstrap-responsive.min.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap/bootstrap-wysihtml5.css') 
     link(rel='stylesheet', href='/stylesheets/custom.css')
-    
-    script(type='text/javascript', src='/js/lib/jquery/jquery-1.7.1.js')
-    script(type='text/javascript', src='/js/lib/bootstrap/bootstrap-modal.js')
-    script(type='text/javascript', src='/js/index.js');
-
 body
   include topbar
+  include signupModal
+  include signupErrorModal
   div.container
     div.content
-      div.page-header
-        h1 Main Page 
-          small Welcome to #{title}
-      div.row-fluid
-        div.span9
-          div.hero-unit
-            h2 Page Content
-            p Primary content of the blog goes here
-            include signupModal
-            include signupErrorModal    
-        div.span3
+      block content
+        div.page-header
+          h1 Main Page 
+            small Welcome to nodeBlox 
+        div.row-fluid
+          div.span9
+            include showPosts
+          div.span3
             div.well.sidebar-nav
               h3 Secondary Content
         
-    div.footer 
+    div#footer.footer 
       p &copy; nodeblox 2011
+      script(type='text/javascript', src='/js/lib/jquery/jquery-1.7.1.js')
+      script(type='text/javascript', src='/js/lib/bootstrap/bootstrap.min.js')
+      script(type='text/javascript', src='/js/lib/bootstrap/bootstrap-modal.js')
+      script(type='text/javascript', src='/js/lib/bootstrap/wysihtml5-0.3.0_rc2.js')
+      script(type='text/javascript', src='/js/lib/bootstrap/bootstrap-wysihtml5.js')
+      script(type='text/javascript', src='/js/index.js');
+      script(type='text/javascript', src='/js/admin/admin.js');

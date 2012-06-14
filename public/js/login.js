@@ -44,6 +44,14 @@ var Login = function(){
     keyboard:'true'
   });
   $('#signup-modal').modal('toggle');
+
+  /**
+    * FIXME: This is a workaround for signup modal not working.
+    * will be removed once modal toggle is fixed.
+    */
+  $('#signup-btn').live('click', function(){
+    $('#signup-modal').modal('show');
+  });
   
   $('#signup-error-modal').modal({
     backdrop:'static',

@@ -21,9 +21,9 @@ div#signup-modal.modal(style="display:none;")
           div.control-group
             label.control-label(for="password") Password(Once More) :
             div.controls
-              input.input-small(type="password", id="password")
+              input.input-small(type="password", id="passwordSecond")
 
   div.modal-footer
-    a.btn.btn-danger(href='#', data-dismiss="modal") Cancel
-    a.btn.btn-primary(href='#', data-dismiss="modal") Sign Up
+    a#signupCancel.btn.btn-danger(href='#', data-dismiss="modal") Cancel
+    a#signupConfirm.btn.btn-primary(href='#', data-dismiss="modal") Sign Up
 

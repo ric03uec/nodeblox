@@ -41,7 +41,7 @@ var Post = new Schema({
   */
 Post.statics.getAll = function(cb){
   var query = this.find({});
-  query.desc('key');
+  query.sort('key', -1);
   return query.exec(cb);
 };
 

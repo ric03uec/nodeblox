@@ -1,14 +1,32 @@
 {
-    "name": "nodeblox"
-  , "version": "0.0.1"
-  , "private": true
-  , "dependencies": {
-      "express": "2.5.0"
-    , "jade": "latest"
-    , "mongoose": "latest"
-    , "bcrypt":"latest"
-    , "devnull":"latest"
-    , "colors":"latest"
-    , "mongodb":"latest"
-  }
+  "name": "nodeblox",
+  "version": "0.0.1",
+  "description": "A Node.js tutorial for building a basic CMS",
+  "main": "app.js",
+  "dependencies": {
+    "mongoose": "latest",
+    "express": "2.5.0",
+    "mongodb": "latest",
+    "bcrypt": "latest",
+    "colors": "latest",
+    "hooks": "latest",
+    "devnull": "latest",
+    "jade": "latest"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ric03uec/nodeblox.git"
+  },
+  "keywords": [
+    "nodejs",
+    "expressjs",
+    "cms",
+    "jade"
+  ],
+  "author": "devashish <mail@devashish.co.in>",
+  "license": "MIT"
 }

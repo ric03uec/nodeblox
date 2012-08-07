@@ -13,7 +13,16 @@ var toLower = function(string){
   return string.toLowerCase();
 };
 
+var getId = function(){
+  return new Date().getTime();
+};
+
 var User = new Schema({
+  'key' : {
+    unique : true,
+    type : Number,
+    default: getId
+  },
   'username' : { type : String, 
               validate : [validatePresenceOf, 'a Username is required'],
               set : toLower,

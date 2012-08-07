@@ -1,18 +1,40 @@
 var Signup = function(){
   $('#signupConfirm').click(function(){
-    Signup.validateForm();
+    Signup.submitForm();
   });
-}
+};
 
-Signup.validateForm = function(){
-  var username = $('#username').val();
-  var email = $('#useremail').val();
-  var pass1 = $('#passwordFirst').val();
-  var pass2 = $('#passwordSecond').val();
+Signup.submitForm = function(){
 
-  console.log(pass1);
-  console.log(pass2);
+  var signupForm = {
+    username : $('#signupUser').val(),
+    email : $('#signupEmail').val(),
+    pass1 : $('#passwordFirst').val(),
+    pass2 : $('#passwordSecond').val()
+  };
+  //run some basic validations
+  $.post('/signup', {'signupForm' : signupForm}, function(response){
+    if(response.retStatus === 'success'){
+      Signup.showMessage($('#signupMessage'), 'Successfully Logged in', true);
+    }else{
+      Signup.showMessage($('#signupMessage'), 'Error Loggin in : ' + response.message, false);
+    }
+  });
+};
 
+Signup.showMessage = function(domElement, message, success){
+  domElement.removeClass();
+  domElement.addClass('alert');
+  domElement.css('display', 'block');
+  domElement.text(message);
+  if(success === true){
+    domElement.addClass('alert-success');
+  }else{
+    domElement.addClass('alert-error');
+  }
+  var t = setTimeout(function(){
+    domElement.css('display', 'none');
+  }, 5000);
 };
 
 Signup();

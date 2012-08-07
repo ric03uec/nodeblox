@@ -74,11 +74,35 @@ module.exports = function(app){
     */
   app.post('/signup', function(req, res){
     util.log('Serving request for url [POST] ' + req.route.path);
-    
-    var username = req.body.User;
-    var password = req.body.Password;
+    var signupForm = req.body.signupForm;
+    var username = signupForm.username;
+    var pass1 = signupForm.pass1;
+    var pass2 = signupForm.pass2;
 
-    util.log('Username' + username + '   Pass ' + password);
+    util.log('Username ' + username + '   Pass ' + pass1);
+
+    //run all the input validations here. accept as it is right now
+    var newUser = new User();
+    newUser.username = username;
+    newUser.password = pass1;
+
+    newUser.save(function(err, response){
+      var message = '';
+      var retStatus = '';
+      if(!err){
+        util.log('Successfully created new user with Username : ' + username);
+        message = 'Successfully created new user : ' + username;
+        retStatus = 'success';
+      }else{
+        util.log('Error while creating user : ' + username + ' error : ' + util.inspect(err));
+        message = 'Error while creating new user : ' + username + ' ' + err.message;
+        retStatus = 'failure';
+      }
+      res.json({
+        'retStatus' : retStatus,
+        'message' : message
+      });
+    });
   });
 
   app.get('/admin', getAllMeta, function(req, res){

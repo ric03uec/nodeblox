@@ -12,6 +12,8 @@ body
   include signupErrorModal
   div.container
     div.content
+      div#signupMessage.alert(style="display:none;")
+        button.close(data-dismiss="alert") x
       block content
         div.page-header
           h1 Main Page 

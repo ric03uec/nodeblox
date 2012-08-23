@@ -14,7 +14,6 @@ Signup.submitForm = function(){
   };
   //run some basic validations
   $.post('/signup', {'signupForm' : signupForm}, function(response){
-      console.log(response);
     if(response.retStatus === 'success'){
       Signup.showMessage($('#signupMessage'), 'Successfully Signed up ', true);
       $(location).attr('href', '/admin');

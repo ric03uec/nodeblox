@@ -14,10 +14,12 @@ Signup.submitForm = function(){
   };
   //run some basic validations
   $.post('/signup', {'signupForm' : signupForm}, function(response){
+      console.log(response);
     if(response.retStatus === 'success'){
-      Signup.showMessage($('#signupMessage'), 'Successfully Logged in', true);
+      Signup.showMessage($('#signupMessage'), 'Successfully Signed up ', true);
+      $(location).attr('href', '/admin');
     }else{
-      Signup.showMessage($('#signupMessage'), 'Error Loggin in : ' + response.message, false);
+      Signup.showMessage($('#signupMessage'), 'Error Creating New User : ' + response.message, false);
     }
   });
 };

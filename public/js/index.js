@@ -12,4 +12,5 @@ Main.loadScript = function(url){
 
 $(document).ready(function(response){
   Main.loadScript('js/login.js');
+  Main.loadScript('js/signup.js');
 });

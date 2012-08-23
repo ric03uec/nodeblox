@@ -18,6 +18,21 @@ var getAllMeta = function(req, res, next){
   });
 };
 
+/**
+  * validate the signup credentials entered by the user
+  * @param {String} username 
+  * @param {String} pass1 : first password
+  * @param {String} pass2 : verification password
+  */
+var validateUserData = function(username, pass1, pass2){
+  if(pass1.trim() !== pass2.trim()){
+    util.log('Passwords not Matching ' + pass1 + ' ' + pass2);
+    return 'Passwords not Matching';
+  }
+  return '';
+  //put any other validations here
+};
+
 /*
  * GET home page.
  */
@@ -51,6 +66,7 @@ module.exports = function(app){
           retStatus : 'failure'  
         });
       }else{
+        console.log(user);
         req.session.user = user;
         res.json({
           retStatus : 'success',
@@ -74,11 +90,43 @@ module.exports = function(app){
     */
   app.post('/signup', function(req, res){
     util.log('Serving request for url [POST] ' + req.route.path);
-    
-    var username = req.body.User;
-    var password = req.body.Password;
+    var signupForm = req.body.signupForm;
+    var username = signupForm.username;
+    var pass1 = signupForm.pass1;
+    var pass2 = signupForm.pass2;
 
-    util.log('Username' + username + '   Pass ' + password);
+    var validateMsg = validateUserData(username, pass1, pass2);
+    if(validateMsg !== ''){
+      res.json({
+        'retStatus' : 'failure',
+        'message' : validateMsg
+      });
+    }else{
+      var newUser = new User();
+      newUser.username = username;
+      newUser.password = pass1;
+
+      newUser.save(function(err, savedUser){
+        var message = '';
+        var retStatus = '';
+        if(!err){
+          util.log('Successfully created new user with Username : ' + username);
+          message = 'Successfully created new user : ' + username;
+          retStatus = 'success';
+          req.session.user = savedUser;
+        }else{
+          util.log('Error while creating user : ' + username + ' error : ' + util.inspect(err));
+          if(err.code === 11000){
+            message = "User already exists";
+          }
+          retStatus = 'failure';
+        }
+        res.json({
+          'retStatus' : retStatus,
+          'message' : message
+        });
+      });
+    }
   });
 
   app.get('/admin', getAllMeta, function(req, res){

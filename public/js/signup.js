@@ -16,7 +16,7 @@ Signup.submitForm = function(){
   $.post('/signup', {'signupForm' : signupForm}, function(response){
     if(response.retStatus === 'success'){
       Signup.showMessage($('#signupMessage'), 'Successfully Signed up ', true);
-      $(location).attr('href', '/admin');
+      $(location).attr('href', '/');
     }else{
       Signup.showMessage($('#signupMessage'), 'Error Creating New User : ' + response.message, false);
     }

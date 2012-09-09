@@ -1,7 +1,7 @@
 !!!
 html
   head
-    title='nodeBlox'
+    title='askMe'
     link(rel='stylesheet', href='/stylesheets/bootstrap/bootstrap.min.css')
     link(rel='stylesheet', href='/stylesheets/bootstrap/bootstrap-responsive.min.css')
     link(rel='stylesheet', href='/stylesheets/bootstrap/bootstrap-wysihtml5.css') 
@@ -17,16 +17,16 @@ body
       block content
         div.page-header
           h1 Main Page 
-            small Welcome to nodeBlox 
+            small Welcome to askMe
         div.row-fluid
           div.span9
             include showPosts
           div.span3
             div.well.sidebar-nav
-              h3 Secondary Content
+              include sidebar
         
     div#footer.footer 
-      p &copy; nodeblox 2011
+      p &copy; askMe 2012
       script(type='text/javascript', src='/js/lib/jquery/jquery-1.7.1.js')
       script(type='text/javascript', src='/js/lib/bootstrap/bootstrap.min.js')
       script(type='text/javascript', src='/js/lib/bootstrap/bootstrap-modal.js')

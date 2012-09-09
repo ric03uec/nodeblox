@@ -1,0 +1,10 @@
+div#mainSidebar
+  //open a text box to ask a question
+  //save it in the name of current user
+  a#askLink(href="/ask", style="font-size:25px") ASK
+  span.help-block Ask a new question
+  br
+  input#inputQuestion(type="textarea", rows="4", placeholder="enter some question here")
+  input#submitQues.btn.btn-primary(type="button", value = "Submit")
+  span#submitWarn(style="margin-left:10px;visibility:hidden;")
+  br

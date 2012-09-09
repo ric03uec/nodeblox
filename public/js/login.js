@@ -25,7 +25,7 @@ var Login = function(){
         if(response.retStatus === 'success'){
           $('#loginForm').hide();
           $('#signup-btn').hide();
-          $(location).attr('href', '/admin');
+          $(location).attr('href', '/');
         }else if(response.retStatus === 'failure'){
           $('#signup-error-modal').modal('show');
         }

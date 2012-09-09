@@ -11,7 +11,8 @@
     "colors": "latest",
     "hooks": "latest",
     "devnull": "latest",
-    "jade": "latest"
+    "jade": "latest",
+    "async" : "latest"
   },
   "devDependencies": {},
   "scripts": {

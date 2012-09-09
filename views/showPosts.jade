@@ -1,14 +1,25 @@
 div#postListDiv
-div#allPostsDiv(data-bind="template: {name:'allPostsList', foreach:postsList}")
+div#allPostsDiv(data-bind="template: {name:'allQuesList', foreach:quesList}")
 
 
-script(type='text/html', id="allPostsList")
+//- template for showing a single question
+script(type='text/html', id="allQuesList")
   div.well
-    h1(data-bind="text: subject")
+    h1(data-bind="text: question")
+    p(style="margin-left:20px") Asked by ::: <span data-bind="text:username"></span>
     br
-    div(id="showPostContent")
-      p(data-bind="text: content")
+    div(id="showPostContent", data-bind="template : {name: 'allAnsList', foreach:answers}")
     br
+    a.btn.btn-primary(data-bind="attr: {href : '#', qId : qId}", data-bind="click : answerThis") Answer
+    input.input-xlarge(type="text", style="margin-top:6px; margin-left:20px;", data-bind="attr : {id : 'inp'+qId}")
+    span(style="margin-left:10px;visibility:hidden;", data-bind="attr: {id: 'warn'+qId}")
+
+//- template for showing all the answers
+script(type='text/html', id="allAnsList")
+  div
+    p ------------------------------------------------------------------------------
+    p(data-bind="text: answer")
+    p(style="margin-left:20px") Answered by --> <span data-bind="text:username"></span>
 
 //
   -if(allPosts.length > 0){

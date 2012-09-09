@@ -35,6 +35,10 @@ User.statics.findUser = function(username, cb){
   return  this.find({'username' : username}, cb);
 };
 
+User.statics.findByKey = function(key, cb){
+  return  this.find({'key' : key}, cb);
+};
+
 User.statics.validateUser = function(username, password, cb){
   this.find({'username' : username}, function(err, response){
     var user = response[0];

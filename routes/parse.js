@@ -7,7 +7,6 @@ var User = require('../schemas/User');
 var Async = require('async');
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/testdb');
 var Parse = {};
 
 var getQuesUser = function(quesArr, next){

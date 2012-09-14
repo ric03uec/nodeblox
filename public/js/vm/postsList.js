@@ -1,35 +1,27 @@
-//view model for posts list
-//this will fetch all the posts from db and show them
-//the vm will be an observable array.
-var PostsList = function(){
-  var that = this;
-
-  //array to hold all the posts for main page.
-  this.postsList = ko.observableArray();
-  var postEx = {
-    'key' : 'somekey',
-    'content' : 'this is post content',
-    'subject' : 'this is post subject'
+define(['jquery', 'knockout'], function($, KO){
+  //method to call when ajax request fails
+  var ajaxFail = function(xhr, retStatus, error){
+    console.log('error fetching data ');
+    console.log(error);
   };
-  var postEx1 = {
-    'key' : 'somekeysss',
-    'content' : 'this is post contensdfsdft',
-    'subject' : 'this is post subjecsdfsdft'
+  var PostsList = function(){
+    var that = this;
+    //array to hold all the posts for main page.
+    this.postsList = KO.observableArray();
+  
+    $.ajax({
+      'type' : 'GET',
+      'url' : '/posts/all',
+      'error' : ajaxFail,
+      'success' : function(result, status, xhr){
+        if(result.retStatus === 'success'){
+          that.postsList(result.allPosts);
+        }
+      }
+    });
   };
-  this.postsList.push(postEx);
-  this.postsList.push(postEx1);
 
-  //fetch all the posts and save them in the array
-  /*
-  $.ajax({
-    'type' : 'GET',
-    'url' : '/posts/all',
-    'error' : ajaxFail,
-    'success' : function(result, status, xhr){
-      that.postsList(result.list);
-    }
-  });
-  */
-
-};
-ko.applyBindings(new PostsList(), document.getElementById('allPostsDiv'));
+  return function(){
+    KO.applyBindings(new PostsList(), document.getElementById('allPostsDiv'));
+  };
+});

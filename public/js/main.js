@@ -23,6 +23,6 @@ requirejs.config({
 //initialize the main router here..
 //since this is a require and not define, there is no need to return an object
 require(['index'], function(Index){
-  console.log("initializing main function");
   Index.initialize();
 });
+

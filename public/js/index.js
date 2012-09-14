@@ -3,28 +3,29 @@
 //require('jquery');
 
 //define a module here that will initialize main page widgets
-define(['jquery', 'knockout', 'bootstrap-wysihtml5'], function($, KO){
+define([
+    'jquery', 
+    'knockout', 
+    'login', 
+    './vm/postsList',
+    'signup',
+    'admin',
+    'bootstrap-modal'],
+    function($, KO, Login, Posts, Signup, Admin){
   var Index = {};
-  var abc = $('#signupMessage').val();
-  console.log(abc);
-  console.log(KO);
-  console.log($('#postContent1'));
-  $('#postContent1').wysihtml5({
-    "font-styles": true, 
-    "emphasis": true, 
-    "lists": true, 
-    "html": false, 
-    "link": true,   
-    "image": true 
-    });
-
-
-
+  
   Index.initialize = function(){
+    //including 'Login' module will not initialize it, its function will have to be called
+    //explicitly
+    Login();
+    Posts();
+    Signup();
+    Admin();
     console.log('indexjs initialized....');
   };
   return Index;
 });
+
 
 
 /*

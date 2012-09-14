@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 var util = require('util');
 var Logger = require('devnull');
@@ -48,6 +48,23 @@ module.exports = function(app){
       }else{
         util.log('Error fetching posts from database : ' + err);
         res.render('error');
+      }
+    });
+  });
+
+  app.get('/posts/all', function(req, res){
+    logger.log('Serving request for url [GET]' + req.route.path)
+    Post.getAll(function(err, allPosts){
+      if(!err && allPosts){
+        res.json({
+          'retStatus' : 'success',
+          'allPosts' : allPosts
+        });
+      }else{
+        util.log('Error fetching posts from database : ' + err);
+        res.json({
+          'retStatus' : 'failure',
+        });
       }
     });
   });

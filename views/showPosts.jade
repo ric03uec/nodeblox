@@ -7,15 +7,5 @@ script(type='text/html', id="allPostsList")
     h1(data-bind="text: subject")
     br
     div(id="showPostContent")
-      p(data-bind="text: content")
+      div(data-bind="html: content")
     br
-
-//
-  -if(allPosts.length > 0){
-    -each post in allPosts
-      include postDisplay
-    br
-  -}else{
-    h3 No posts till now..
-  -}
-

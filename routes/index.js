@@ -238,4 +238,9 @@ module.exports = function(app){
     util.log('Serving request for url[GET] ' + req.route.path);
     res.render('contact');
   });
+  
+  app.get('/about', function(req, res){
+    util.log('Serving request for url[GET] ' + req.route.path);
+    res.render('about');
+  });
 };

@@ -1,4 +1,4 @@
-define(['jquery', 'bootstrap-wysihtml5'], function($){
+define(['jquery', 'bootstrap', 'wysihtml5-rc', 'bootstrap-wysihtml5'], function($){
   var editor = {};
   var initIndexPage = function(){
     editor = $('#postContent').wysihtml5({

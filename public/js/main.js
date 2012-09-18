@@ -3,6 +3,7 @@
 //global configuration. put the global script paths here
 requirejs.config({
   baseUrl : '/js/',
+  //jquery and knockout can load as AMD modules
   paths : {
     'jquery' : 'lib/jquery/jquery',
     'knockout' : 'lib/knockout/knockout',

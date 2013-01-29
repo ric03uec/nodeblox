@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 /**
  * Module dependencies.
@@ -28,7 +28,6 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(app.router);
   app.use(express.static(__dirname + '/public'));
-  
 });
 
 app.dynamicHelpers({
@@ -49,6 +48,12 @@ app.configure('stage', function(){
 });
 
 app.configure('production', function(){
+  //use redis store witht the following configuration
+  var redisConfig = {
+    'host' : '127.0.0.1',
+    'port' : 6397
+  };
+  //also run r.js here
   app.use(express.errorHandler()); 
 });
 

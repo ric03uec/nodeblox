@@ -1,15 +1,18 @@
-'use strict'
+'use strict';
 
 /**
  * Module dependencies.
  */
 var express = require('express');
 var util    = require('util');
+var config = require('./config');
 var Logger = require('devnull');
 var logger = new Logger({namespacing : 0});
 var mongoose = require('mongoose');
-var app  = express.createServer();
+var path = require('path');
+var http = require('http');
 
+var app  = express();
 mongoose.connect('mongodb://localhost/testdb');
 
 /**
@@ -26,16 +29,17 @@ app.configure(function(){
     secret : 'devadotD'      
   }));
   app.use(express.methodOverride());
+
+  app.use(function(req, res, next){
+    res.locals.session = req.session;
+    next();
+  });
+
   app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
-  
+  app.use(express.static(path.join(__dirname + '/public')));
 });
 
-app.dynamicHelpers({
-  session : function(req, res){
-    return req.session;
-  }
-});
+
 
 /**
   * Application environment(s) Configuration
@@ -49,14 +53,23 @@ app.configure('stage', function(){
 });
 
 app.configure('production', function(){
+  //use redis store witht the following configuration
+  var redisConfig = {
+    'host' : '127.0.0.1',
+    'port' : 6397
+  };
+  //also run r.js here
   app.use(express.errorHandler()); 
 });
 
 // Routes
 require('./routes')(app);
 
-app.listen(2727);
-util.log("Express server listening on port " + app.address().port + " in mode " + app.settings.env);
-logger.log("Express server listening on port " + app.address().port + " in mode " + app.settings.env);
+//app.listen(2727);
+//util.log("Express server listening on port " + app.address().port + " in mode " + app.settings.env);
+//logger.log("Express server listening on port " + app.address().port + " in mode " + app.settings.env);
+http.createServer(app).listen(config.port, function(){
+  logger.log("Express server listening on port " + config.port);
+});
 
 module.exports = app; 

@@ -1,8 +1,16 @@
 div#postListDiv
-  -if(allPosts.length > 0){
-    -each post in allPosts
-      include postDisplay
+div#allPostsDiv(data-bind="template: {name:'allPostsList', foreach:postsList}")
+
+
+script(type='text/html', id="allPostsList")
+  div.well
+    h1(data-bind="text: subject")
+    small Posted on - <span data-bind="text : date"></span>
+      | By - <span data-bind="text : author"></span>
     br
-  -}else{
-    h3 No posts till now..
-  -}
+    span -------------------------------------------------------------------------------------------------------------------
+    br
+    br
+    div(id="showPostContent")
+      div(data-bind="html: content")
+    br

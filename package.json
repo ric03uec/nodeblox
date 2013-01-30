@@ -11,7 +11,9 @@
     "colors": "latest",
     "hooks": "latest",
     "devnull": "latest",
-    "jade": "latest"
+    "jade": "latest",
+    "connect-redis": "latest",
+    "redis": "latest",
   },
   "devDependencies": {},
   "scripts": {

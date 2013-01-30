@@ -13,7 +13,7 @@
     "devnull": "latest",
     "jade": "latest",
     "connect-redis": "latest",
-    "redis": "latest",
+    "redis": "latest"
   },
   "devDependencies": {},
   "scripts": {

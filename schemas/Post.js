@@ -41,7 +41,7 @@ var Post = new Schema({
   */
 Post.statics.getAll = function(cb){
   var query = this.find({});
-  query.sort('key', -1);
+  query.sort({'key': -1});
   return query.exec(cb);
 };
 
@@ -49,7 +49,7 @@ Post.statics.getAll = function(cb){
   * Get only the meta information of all the posts.
   */
 Post.statics.getAllMeta = function(cb){
-  return this.find({}, ['key','subject', 'author', 'tags'], cb);
+  return this.find({}, 'key subject author tags', cb);
 };
 
 Post.statics.findByKey = function(key, cb){

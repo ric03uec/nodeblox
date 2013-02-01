@@ -16,7 +16,7 @@ var http = require('http');
 
 
 var app  = express();
-mongoose.connect('mongodb://localhost/testdb');
+mongoose.connect('mongodb://localhost/' + config.dbname);
 
 /**
   * Application Global Configuration

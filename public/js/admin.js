@@ -31,7 +31,7 @@ define(['jquery', 'bootstrap', 'wysihtml5-rc', 'bootstrap-wysihtml5'], function(
 
 
   var initPostsLink = function(){
-    $("a.postLink").on("click", function(e){
+    $("a.postLink").live("click", function(e){
       e.preventDefault();
       var postId = ($(this)[0]).getAttribute('id');
 
@@ -51,9 +51,10 @@ define(['jquery', 'bootstrap', 'wysihtml5-rc', 'bootstrap-wysihtml5'], function(
   };
 
   var initPostsDeleteLink = function(){
-    $("a.postDelete").on('click', function(e){
+    $("a.postDelete").live('click', function(e){
       e.preventDefault();
       var postId = ($(this)[0]).getAttribute('id');
+      //TODO: show a prompt before deleting
 
       data = {
         'post_id' : postId,
@@ -65,11 +66,9 @@ define(['jquery', 'bootstrap', 'wysihtml5-rc', 'bootstrap-wysihtml5'], function(
         data : data,
         success : function(response, textStatus, jqxhr){
           if(response.retStatus === 'success'){
-            console.log('post deleted successfully');
-
+            $(location).attr('href', '/admin');
           }else{
             console.log('error while deleting post');
-            console.log(response.message);
           }
         },
         error : function(errorStatus){

@@ -238,12 +238,13 @@ module.exports = function(app){
 
     if(req.body && req.body.hasOwnProperty('post_id')){
       var postId = req.body['post_id'];
-      Post.removeByKey(postId, function(err, response){
-        if(!err && response){
-          logger.log('successfully deleted post with id : ' + response);
+      Post.removeByKey(postId, function(err, removeResponse){
+        if(!err && removeResponse){
+          logger.log('successfully deleted post with id : ' + removeResponse);
           
           response['retStatus'] = 'success';
           response['msg'] = 'Successfully deleted post';
+
         }
         res.json(response);
       });

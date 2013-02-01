@@ -83,7 +83,6 @@ module.exports = function(app){
           retStatus : 'failure'  
         });
       }else{
-        console.log(user);
         req.session.user = user;
         res.json({
           retStatus : 'success',

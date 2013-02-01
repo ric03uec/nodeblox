@@ -2,6 +2,8 @@ div#postListDiv
   -if(postsList.length > 0){
     -each post in postsList
       a.postLink(id="#{post.key}", href="#") #{post.subject}
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      a.postDelete(id="#{post.key}", href="#") Delete
       br
   -}else{
     h3 No posts till now..

@@ -56,4 +56,12 @@ Post.statics.findByKey = function(key, cb){
   return this.find({'key' : key}, cb);
 };
 
+/**
+ * Delete post from database and return response 
+ * in callback
+ */
+Post.statics.removeByKey = function(key, cb){
+  //actual post deletion takes place here
+};
+
 module.exports = mongoose.model('Post', Post);

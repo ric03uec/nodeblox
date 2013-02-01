@@ -230,8 +230,25 @@ module.exports = function(app){
     //container for saving a post
   });
 
-  app.get('/admin/remove/:key', function(req, res){
-    //container for deleting a post
+  app.post('/post/delete/', function(req, res){
+    logger.log('Serving request for url [GET]' + req.route.path);
+    var response = {
+      'retStatus' : 'failure',
+      'msg' : 'Error while deleting post by key '
+    };
+
+    if(req.body && req.body.hasOwnProperty('post_id')){
+      var postId = req.body['post_id'];
+      Post.removeByKey(postId, function(err, response){
+        if(!err && response){
+          response['retStatus'] = 'success';
+          response['msg'] = 'Successfully deleted post';
+        }
+        res.json(response);
+      });
+    }else{
+      res.json(response);
+    }
   });
 
   app.get('/contact', function(req, res){

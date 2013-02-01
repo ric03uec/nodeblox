@@ -31,7 +31,7 @@ define(['jquery', 'bootstrap', 'wysihtml5-rc', 'bootstrap-wysihtml5'], function(
 
 
   var initPostsLink = function(){
-    $("a.postLink").live("click", function(e){
+    $("a.postLink").on("click", function(e){
       e.preventDefault();
       var postId = ($(this)[0]).getAttribute('id');
 
@@ -50,8 +50,39 @@ define(['jquery', 'bootstrap', 'wysihtml5-rc', 'bootstrap-wysihtml5'], function(
     });
   };
 
+  var initPostsDeleteLink = function(){
+    $("a.postDelete").on('click', function(e){
+      e.preventDefault();
+      var postId = ($(this)[0]).getAttribute('id');
+
+      data = {
+        'post_id' : postId,
+      };
+      $.ajax({
+        url : '/post/delete/',
+        type : 'POST',
+        dataType : 'json',
+        data : data,
+        success : function(response, textStatus, jqxhr){
+          if(response.retStatus === 'success'){
+            console.log('post deleted successfully');
+
+          }else{
+            console.log('error while deleting post');
+            console.log(response.message);
+          }
+        },
+        error : function(errorStatus){
+
+        }
+      });
+    });
+
+  };
+
   return function(){
     initIndexPage();
     initPostsLink();
+    initPostsDeleteLink();
   };
 });

@@ -240,6 +240,8 @@ module.exports = function(app){
       var postId = req.body['post_id'];
       Post.removeByKey(postId, function(err, response){
         if(!err && response){
+          logger.log('successfully deleted post with id : ' + response);
+          
           response['retStatus'] = 'success';
           response['msg'] = 'Successfully deleted post';
         }

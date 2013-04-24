@@ -44,7 +44,7 @@ module.exports = function(app){
     logger.log('Serving request for url [GET]' + req.route.path)
     Post.getAll(function(err, allPosts){
       if(!err && allPosts){
-        res.render('index', {'allPosts' : allPosts});
+        res.render('index', {'allPosts' : allPosts, 'activePage': 'home'});
       }else{
         util.log('Error fetching posts from database : ' + err);
         res.render('error');
@@ -255,11 +255,11 @@ module.exports = function(app){
 
   app.get('/contact', function(req, res){
     util.log('Serving request for url[GET] ' + req.route.path);
-    res.render('contact');
+    res.render('contact', {'activePage': 'contact'});
   });
   
   app.get('/about', function(req, res){
     util.log('Serving request for url[GET] ' + req.route.path);
-    res.render('about');
+    res.render('about', {'activePage' : 'about'});
   });
 };

@@ -4,12 +4,24 @@ div.navbar.navbar-fixed-top
       a.brand(href='/') nodeBlox 
       div.nav-collapse
         ul.nav
-          li.active
-            a(href='/') Home
-          li
-            a(href='/about') About
-          li
-            a(href='/contact') Contact
+          -if(activePage == 'home')
+            li.active
+              a(href='/') Home
+          -else
+            li
+              a(href='/') Home
+          -if(activePage == 'about')
+            li.active
+              a(href='/about') About
+          -else
+            li
+              a(href='/about') About
+          -if(activePage == 'contact')
+            li.active
+              a(href='/contact') Contact
+          -else
+            li
+              a(href='/contact') Contact
           -if(session.user)
             li
               a(href='/admin') Admin

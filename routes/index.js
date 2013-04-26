@@ -148,7 +148,7 @@ module.exports = function(app){
   app.get('/admin', getAllMeta, function(req, res){
     util.log('Serving request for url [GET] ' + req.route.path);    
     if(req.session.user){
-      res.render('post', {'postsList' : req.postsList});
+      res.render('post', {'postsList' : req.postsList, 'activePage': 'admin'});
     }else{
       res.redirect('/');
     }

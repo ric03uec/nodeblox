@@ -23,8 +23,12 @@ div.navbar.navbar-fixed-top
             li
               a(href='/contact') Contact
           -if(session.user)
-            li
-              a(href='/admin') Admin
+            -if(activePage == 'admin')
+              li.active
+                a(href='/admin') Admin
+            -else
+              li
+                a(href='/admin') Admin
       -if(session.user)
         div#logoutsection.pull-right
           a#logout-btn.btn.btn-info.pull-right.top-bar-form-button(href='/logout') Logout

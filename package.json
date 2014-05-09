@@ -5,15 +5,16 @@
   "main": "app.js",
   "dependencies": {
     "mongoose": "latest",
-    "express": "latest",
+    "express": "~3",
     "mongodb": "latest",
     "bcrypt": "latest",
     "colors": "latest",
     "hooks": "latest",
     "devnull": "latest",
     "jade": "latest",
-    "connect-redis": "latest",
-    "redis": "latest"
+    "connect-redis": "~1.4.7",
+    "redis": "latest",
+    "express-session": "~1.0.4"
   },
   "devDependencies": {},
   "scripts": {

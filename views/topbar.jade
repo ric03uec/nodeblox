@@ -4,22 +4,38 @@ div.navbar.navbar-fixed-top
       a.brand(href='/') nodeBlox 
       div.nav-collapse
         ul.nav
-          li.active
-            a(href='/') Home
-          li
-            a(href='/about') About
-          li
-            a(href='/contact') Contact
-          -if(session.user)
+          -if(activePage == 'home')
+            li.active
+              a(href='/') Home
+          -else
             li
-              a(href='/admin') Admin
+              a(href='/') Home
+          -if(activePage == 'about')
+            li.active
+              a(href='/about') About
+          -else
+            li
+              a(href='/about') About
+          -if(activePage == 'contact')
+            li.active
+              a(href='/contact') Contact
+          -else
+            li
+              a(href='/contact') Contact
+          -if(session.user)
+            -if(activePage == 'admin')
+              li.active
+                a(href='/admin') Admin
+            -else
+              li
+                a(href='/admin') Admin
       -if(session.user)
         div#logoutsection.pull-right
           a#logout-btn.btn.btn-info.pull-right.top-bar-form-button(href='/logout') Logout
           p#loginprompt.pull-right.login-prompt #{session.user.username} 
             small logged In
       -else
-        //a#signup-btn.btn.pull-right.top-bar-form-button(href='#signup-modal', data-toggle="modal") Sign Up
+        a#signup-btn.btn.pull-right.top-bar-form-button(href='#signup-modal', data-toggle="modal") Sign Up
         form.pull-right.form-horizontal.top-bar-form(method="post", id="loginForm")
           input.input-small.top-bar-form-textbox(id="username", type="text", name="User", placeholder="Username")
           input.input-small.top-bar-form-textbox(id="password", type="password", name="Password", placeholder="Password")
